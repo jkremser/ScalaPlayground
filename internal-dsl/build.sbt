@@ -1,3 +1,7 @@
+import AssemblyKeys._
+
+assemblySettings
+
 name := "rhq-alerts-dsl"
 
 scalaVersion :="2.10.2"
@@ -16,3 +20,7 @@ libraryDependencies += "com.typesafe.play" % "play_2.10" % "2.2.1"
 
 scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature")
 
+mergeStrategy in assembly := {
+  case "org/apache/commons/logging/impl/SimpleLog.class" | "org/apache/commons/logging/impl/SimpleLog$1.class" | "play/core/server/ServerWithStop.class" | "org/apache/commons/logging/LogFactory.class" | "org/apache/commons/logging/LogConfigurationException.class" | "org/apache/commons/logging/impl/NoOpLog.class" | "org/apache/commons/logging/Log.class" => MergeStrategy.first
+  case foo => defaultMergeStrategy(foo)
+}
