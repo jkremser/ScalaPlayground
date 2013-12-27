@@ -26,26 +26,26 @@ DOXYFILE_ENCODING      = UTF-8
 # identify the project. Note that if you do not use Doxywizard you need
 # to put quotes around the project name if it contains spaces.
 
-PROJECT_NAME           = "RHQ"
+PROJECT_NAME           = "@project"
 
 # The PROJECT_NUMBER tag can be used to enter a project or revision number.
 # This could be handy for archiving the generated documentation or
 # if some version control system is used.
 
-PROJECT_NUMBER         = "4.9.0"
+PROJECT_NUMBER         = "@version"
 
 # Using the PROJECT_BRIEF tag one can provide an optional one line description
 # for a project that appears at the top of each page and should give viewer
 # a quick idea about the purpose of the project. Keep the description short.
 
-PROJECT_BRIEF          = "rhq-server & core-domain"
+PROJECT_BRIEF          = "@description"
 
 # With the PROJECT_LOGO tag one can specify an logo or icon that is
 # included in the documentation. The maximum height of the logo should not
 # exceed 55 pixels and the maximum width should not exceed 200 pixels.
 # Doxygen will copy the logo to the output directory.
 
-PROJECT_LOGO           = "/home/jkremser/Downloads/RHQ.png"
+PROJECT_LOGO           = "@logo"
 
 # The OUTPUT_DIRECTORY tag is used to specify the (relative or absolute)
 # base path where the generated documentation will be put.
@@ -668,7 +668,7 @@ WARN_LOGFILE           =
 # directories like "/usr/src/myproject". Separate the files or directories
 # with spaces.
 
-INPUT                  =
+INPUT                  = @input
 
 # This tag can be used to specify the character encoding of the source files
 # that doxygen parses. Internally doxygen uses the UTF-8 encoding, which is
@@ -910,7 +910,7 @@ HTML_HEADER            =
 # each generated HTML page. If it is left blank doxygen will generate a
 # standard footer.
 
-HTML_FOOTER            = "<a href='jboss.org/rhq'>Project page</a>"
+HTML_FOOTER            = "footer.html"
 
 # The HTML_STYLESHEET tag can be used to specify a user-defined cascading
 # style sheet that is used by each HTML page. It can be used to
@@ -1006,24 +1006,24 @@ GENERATE_DOCSET        = YES
 # documentation sets from a single provider (such as a company or product suite)
 # can be grouped.
 
-DOCSET_FEEDNAME        = RHQ
+DOCSET_FEEDNAME        = @project
 
 # When GENERATE_DOCSET tag is set to YES, this tag specifies a string that
 # should uniquely identify the documentation set bundle. This should be a
 # reverse domain-name style string, e.g. com.mycompany.MyDocSet. Doxygen
 # will append .docset to the name.
 
-DOCSET_BUNDLE_ID       = RHQ
+DOCSET_BUNDLE_ID       = @project
 
 # When GENERATE_PUBLISHER_ID tag specifies a string that should uniquely
 # identify the documentation publisher. This should be a reverse domain-name
 # style string, e.g. com.mycompany.MyDocSet.documentation.
 
-DOCSET_PUBLISHER_ID    = jboss.org/rhq
+DOCSET_PUBLISHER_ID    = @url
 
 # The GENERATE_PUBLISHER_NAME tag identifies the documentation publisher.
 
-DOCSET_PUBLISHER_NAME  = RHQ
+DOCSET_PUBLISHER_NAME  = @project
 
 # If the GENERATE_HTMLHELP tag is set to YES, additional index files
 # will be generated that can be used as input for tools like the
