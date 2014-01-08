@@ -9,6 +9,12 @@ function isYes() {
   echo $FALSE
 }
 
+# check if doxygen exists
+$(type doxygen &> /dev/null) || { 
+  echo "Doxygen is not installed, please install it first." 
+  exit 1
+}
+
 if [ $# -ne 6 ]; then
 echo ""
   read -p "Project Name (default=Foo): " _project
@@ -60,7 +66,6 @@ function createDoclet {
   sed -i.bak -e "s/@project/$_project_sanitized/g" -e "s/@version/$_version_sanitized/g" -e "s/@description/$_description_sanitized/g" -e "s/@logo/$_logo_sanitized/g" -e "s/@url/$_url_sanitized/g" -e "s/@input/$_input_sanitized/g" "$_project"
 
   echo "<br/><br/>" > footer.html
-  # todo: check if doxygen is installed
   # todo: ask if we should include the source code
   doxygen "$_project"
 
