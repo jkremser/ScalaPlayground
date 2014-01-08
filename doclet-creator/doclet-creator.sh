@@ -13,7 +13,7 @@ if [ $# -ne 6 ]; then
 echo ""
   read -p "Project Name (default=Foo): " _project
   read -p "Version (default=1.0): " _version
-  read -p "Description (default=Description): " _dscription
+  read -p "Description (default=Description): " _description
   read -p "Path to logo file (max-size: w=200px h=55px, default=logo.png): " _logo
   read -p "Project URL (default=www.foo.com): " _url
   read -p "Space separated paths of source directories (default=.): " _input
@@ -56,20 +56,20 @@ read -p "Create the Doclet? (Y/n): " createDocletTest
 createDocletTest=${createDocletTest:-y}
 
 function createDoclet {
-  cp template $_project
-  sed -i.bak -e "s/@project/$_project_sanitized/g" -e "s/@version/$_version_sanitized/g" -e "s/@description/$_description_sanitized/g" -e "s/@logo/$_logo_sanitized/g" -e "s/@url/$_url_sanitized/g" -e "s/@input/$_input_sanitized/g" $_project
+  cp template "$_project"
+  sed -i.bak -e "s/@project/$_project_sanitized/g" -e "s/@version/$_version_sanitized/g" -e "s/@description/$_description_sanitized/g" -e "s/@logo/$_logo_sanitized/g" -e "s/@url/$_url_sanitized/g" -e "s/@input/$_input_sanitized/g" "$_project"
 
   echo "<br/><br/>" > footer.html
   # todo: check if doxygen is installed
   # todo: ask if we should include the source code
-  doxygen $_project
+  doxygen "$_project"
 
   (cd html && cat Makefile | grep -v "XCODE_INSTALL" | sed -e "s/DESTDIR=.*/DESTDIR=../" -e "0,/DOCUMENTS)/s//DOCUMENTS) \&\& rm -f ..\/docSet.dsidx \&\& (cd .. \&\& sbt \"run .\/html\/Tokens.xml\" \&\& cd -) \&\& cp ..\/docSet.dsidx \$(DOCSET_RESOURCES)/" > Makefile2 && mv Makefile2 Makefile && make install)
 
   tar --exclude='.DS_Store' -cvzf "$_project"".tgz" "$_project"".docset"
 
   # cleanup
-  rm -rf "footer.html" "html" $_project "$_project"".bak" "Makefile_bak" "docSet.dsidx"
+  #rm -rf "footer.html" "html" "$_project" "$_project"".bak" "Makefile_bak" "docSet.dsidx"
 }
 
 if [ "$(isYes $createDocletTest)" = "$TRUE" ]; then
