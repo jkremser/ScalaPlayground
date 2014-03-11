@@ -69,12 +69,13 @@ function createDoclet {
   # todo: ask if we should include the source code
   doxygen "$_project"
 
+  (cd html && cat Info.plist | sed -e "s/<\/dict>/     <key>isDashDocset<\/key>\n     <true\/>\n<\/dict>/" > Info.plist2 && mv Info.plist2 Info.plist)
   (cd html && cat Makefile | grep -v "XCODE_INSTALL" | sed -e "s/DESTDIR=.*/DESTDIR=../" -e "0,/DOCUMENTS)/s//DOCUMENTS) \&\& rm -f ..\/docSet.dsidx \&\& (cd .. \&\& sbt \"run .\/html\/Tokens.xml\" \&\& cd -) \&\& cp ..\/docSet.dsidx \$(DOCSET_RESOURCES)/" > Makefile2 && mv Makefile2 Makefile && make install)
 
   tar --exclude='.DS_Store' -cvzf "$_project"".tgz" "$_project"".docset"
 
   # cleanup
-  #rm -rf "footer.html" "html" "$_project" "$_project"".bak" "Makefile_bak" "docSet.dsidx"
+  rm -rf "footer.html" "html" "$_project" "$_project"".bak" "Makefile_bak" "docSet.dsidx"
 }
 
 if [ "$(isYes $createDocletTest)" = "$TRUE" ]; then
